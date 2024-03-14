@@ -61,6 +61,44 @@ function startQuiz() {
 }
 
 function showQsts() {
-
-
+    resetState();
+    let currentQst = questions[currentQstsIndex];
+    let questionNumber = currentQstsIndex + 1;
+    questionElement.innerHTML = questionNumber + ". " + currentQst.question;
+    currentQst.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.classList.add("btn", "btn-secondary");
+        button.innerText = answer.text;
+        answerButtons.appendChild(button);
+        if (answer.correct) {
+            button.dataset.correct = answer.correct;
+        }
+        button.addEventListener("click", selectAnswer);
+    });
 }
+
+function resetState() {
+    while (answerButtons.firstChild) {
+        answerButtons.removeChild(answerButtons.firstChild);
+    }
+    nextButton.style.display = "none";
+}
+
+function selectAnswer(e) {
+    const selectedButton = e.target;
+    const isCorrect = selectedButton.dataset.correct === "true";
+    if (isCorrect) {
+        selectedButton.classList.add("correct");
+        score++;
+    } else {
+        selectedButton.classList.add("incorrect");
+    }
+    Array.from(answerButtons.children).forEach(button => {
+        if (button.dataset.correct == "true") {
+            button.classList.add("correct");
+        }
+        button.disabled = true;
+    });
+    nextButton.style.display = "block";
+}
+
