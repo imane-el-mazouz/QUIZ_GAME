@@ -11,8 +11,8 @@
 
 *Critères
 
-    ** Site qui respecte les normes W3C
-    ** Site qui s'adapte parfaitement aux diffèrents types d'écrans
+    ** Site qui respecte les normes W3C.
+    ** Site qui s'adapte parfaitement aux diffèrents types d'écrans.
   
 
 ​ 
