@@ -102,3 +102,35 @@ function selectAnswer(e) {
     nextButton.style.display = "block";
 }
 
+function showScore() {
+    resetState();
+    questionElement.innerHTML = " Congratulations ! , you scored " + score + " out of " + questions.length + "!";
+    nextButton.innerHTML = "Play Again";
+    nextButton.classList.add("center-button");
+    nextButton.style.display = "block";
+}
+
+function restartQuiz() {
+    startQuiz();
+    nextButton.style.display = "none";
+}
+
+nextButton.addEventListener("click", () => {
+    if (currentQstsIndex < questions.length) {
+        handleNextButton();
+    } else {
+        restartQuiz();
+    }
+});
+
+function handleNextButton() {
+    currentQstsIndex++;
+    if (currentQstsIndex < questions.length) {
+        showQsts();
+    } else {
+        showScore();
+    }
+}
+
+startQuiz();
+
